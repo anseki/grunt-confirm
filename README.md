@@ -144,5 +144,19 @@ grunt.initConfig({
 + If you want to more process, consider [grunt-task-helper](https://github.com/anseki/grunt-task-helper).
 + Highlighting the question text like the images at top of this document may be better. [colors](https://github.com/Marak/colors.js) is useful for that.
 
+```js
+require('colors');
+grunt.initConfig({
+  confirm: {
+    setup: {
+      options: {
+        question: 'Can you see me?'.green.bold,
+        continue: true
+      }
+    }
+  }
+});
+```
+
 ## History
  * 2014-09-17			v0.1.0			Initial release.
