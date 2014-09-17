@@ -1,7 +1,7 @@
 {
   "name": "grunt-confirm",
-  "description": "Abort or continue the tasks flow according to an answer to the question, the tasks pause and wait it.",
-  "version": "0.1.0",
+  "description": "Abort or continue the tasks flow according to an answer to the question, the tasks pause and wait it. This differs from others in that you specify the question and you specify how to determine to abort or continue.",
+  "version": "0.1.0a",
   "homepage": "https://github.com/anseki/grunt-confirm",
   "author": {
     "name": "anseki"
