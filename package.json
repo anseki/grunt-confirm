@@ -1,23 +1,17 @@
 {
   "name": "grunt-confirm",
+  "version": "0.1.1",
+  "title": "grunt-confirm",
   "description": "Abort or continue the tasks flow according to an answer to the question, the tasks pause and wait it. This differs from others in that you specify the question and you specify how to determine to abort or continue.",
-  "version": "0.1.0a",
-  "homepage": "https://github.com/anseki/grunt-confirm",
-  "author": {
-    "name": "anseki"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/anseki/grunt-confirm.git"
-  },
-  "bugs": {
-    "url": "https://github.com/anseki/grunt-confirm/issues"
-  },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "https://github.com/anseki/grunt-confirm/blob/master/LICENSE-MIT"
-    }
+  "keywords": [
+    "gruntplugin",
+    "confirm",
+    "abort",
+    "continue",
+    "question",
+    "pause",
+    "wait",
+    "prompt"
   ],
   "engines": {
     "node": ">= 0.8.0"
@@ -28,14 +22,15 @@
   "peerDependencies": {
     "grunt": "~0.4.1"
   },
-  "keywords": [
-    "gruntplugin",
-    "confirm",
-    "abort",
-    "continue",
-    "question",
-    "pause",
-    "wait",
-    "prompt"
-  ]
+  "homepage": "https://github.com/anseki/grunt-confirm",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/anseki/grunt-confirm.git"
+  },
+  "bugs": "https://github.com/anseki/grunt-confirm/issues",
+  "licenses": "MIT",
+  "author": {
+    "name": "anseki",
+    "url": "https://github.com/anseki"
+  }
 }
