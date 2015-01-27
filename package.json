@@ -1,6 +1,6 @@
 {
   "name": "grunt-confirm",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "title": "grunt-confirm",
   "description": "Abort or continue the tasks flow according to an answer to the question, the tasks pause and wait it. This differs from others in that you specify the question and you specify how to determine to abort or continue.",
   "keywords": [
@@ -17,7 +17,7 @@
     "node": ">= 0.8.0"
   },
   "dependencies": {
-    "readline-sync": "~0.4.8"
+    "readline-sync": "~0.5.2"
   },
   "peerDependencies": {
     "grunt": "~0.4.1"
