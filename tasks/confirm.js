@@ -14,7 +14,7 @@ module.exports = function(grunt) {
     RE_CTRL_CHAR = /\x1B\[\d+m/,
     HL_IN = '\x1B[1m', HL_OUT = '\x1B[22m';
 
-  // Wrap handler
+  // Wrap handler.
   function callHandler(handler, argsArray, handlerClass) {
     try {
       return handler.apply(grunt.task.current, argsArray);
@@ -28,9 +28,10 @@ module.exports = function(grunt) {
     'Abort or continue the tasks flow according to an answer to the question,' +
       ' the tasks pause and wait it.', function() {
 
-    var options = this.options(), question, answer, filesArray;
+    var that = this, options = that.options(), filesArray, matches,
+      query, res, rlsMethod, rlsOptions = {history: false};
 
-    function getFiles(that) {
+    function getFiles() {
       if (!filesArray) {
         filesArray = [];
         that.files.forEach(function(f) {
@@ -43,29 +44,41 @@ module.exports = function(grunt) {
               return true;
             }
           });
-          // Grunt not supports empty src.
+          // Grunt does not support empty src.
           if (srcArray.length) { filesArray.push({src: srcArray, dest: f.dest}); }
         });
       }
       return filesArray;
     }
     function hl(text) {
-      text = '' + text;
+      text += '';
       return RE_CTRL_CHAR.test(text) ? text : HL_IN + text + HL_OUT;
     }
 
-    question = typeof options.question === 'function' ?
-      callHandler(options.question, [getFiles(this)], 'question') :
-      options.question;
+    if (typeof options.question === 'function') {
+      query = callHandler(options.question, [getFiles()], 'question');
+      if (!query) { return; }
+    } else {
+      query = options.question ? hl(options.question + ' :') : options.question; // accept ''
+    }
 
-    if (question) {
-      answer = readlineSync.question(hl(question + ' :'));
-      if (!(typeof options.continue === 'function' ?
-          callHandler(options.continue, [answer, getFiles(this)], 'continue') :
-          options.continue)) {
-        grunt.log.ok('Tasks are aborted.');
-        grunt.task.clearQueue();
-      }
+    if ((matches = /^\s*_key(?:\:(.+))?\s*$/i.exec(options.input + ''))) {
+      rlsMethod = 'keyIn';
+      if (matches[1]) { rlsOptions.trueValue = matches[1]; }
+      else if (typeof options.proceed !== 'function' &&
+        typeof options.proceed !== 'boolean') { rlsMethod = 'keyInPause'; }
+    } else {
+      rlsMethod = 'question';
+      if (options.input) { rlsOptions.trueValue = (options.input + '').split(','); }
+    }
+
+    res = readlineSync[rlsMethod](query, rlsOptions);
+    if (!(rlsOptions.trueValue ? res === true :
+        typeof options.proceed === 'function' ? callHandler(options.proceed,
+          [res, getFiles()], 'proceed') :
+        typeof options.proceed === 'boolean' ? options.proceed : true)) {
+      grunt.log.ok('Tasks are aborted.');
+      grunt.task.clearQueue();
     }
   });
 };

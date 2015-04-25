@@ -3,8 +3,6 @@
 Abort or continue the tasks flow according to an answer to the question, the tasks pause and wait it.  
 This differs from others in that you specify the question and you specify how to determine to abort or continue.
 
-Example:
-
 ![sample](cl_01.png)
 
 ![sample](cl_02.png)
@@ -39,7 +37,7 @@ If specified Function returns falsy (e.g. `null`, `undefined`, `''`, `false` etc
 The specified Function is passed `files` argument. This is standard Grunt `files` components (see [Files](http://gruntjs.com/configuring-tasks#files)).  
 The Function can make the question text by using it.
 
-Example:
+For example:
 
 `Gruntfile.js`
 
@@ -49,7 +47,7 @@ grunt.initConfig({
     build: {
       options: {
         // Static text.
-        question: 'This processing require about 10 minutes. Continue?',
+        question: 'This processing requires about 10 minutes. Continue?',
         continue: function(answer) {
           return answer.toLowerCase() === 'y';
         }
@@ -97,7 +95,7 @@ If `false` is specified or specified Function returns falsy (e.g. `null`, `undef
 The specified Function is passed `answer` and `files` arguments. The `answer` is value that was typed by user. The `files` is standard Grunt `files` components (see [Files](http://gruntjs.com/configuring-tasks#files)).  
 The Function can determine to abort or continue by using those.
 
-Example:
+For example:
 
 `Gruntfile.js`
 
@@ -157,6 +155,3 @@ grunt.initConfig({
   }
 });
 ```
-
-## History
- * 2014-09-17			v0.1.0			Initial release.
