@@ -2,7 +2,7 @@
   "name": "grunt-confirm",
   "version": "1.0.0",
   "title": "grunt-confirm",
-  "description": "Abort or continue the tasks flow according to an answer to the question, the tasks pause and wait it. This differs from others in that you specify the question and you specify how to determine to abort or continue.",
+  "description": "Abort or continue the flow of tasks according to an answer (with or without Enter key) to the specified question. the flow of tasks pauses and waits for it. You can specify the way to decide to abort or continue.",
   "keywords": [
     "gruntplugin",
     "confirm",
@@ -17,7 +17,7 @@
     "node": ">= 0.8.0"
   },
   "dependencies": {
-    "readline-sync": "~0.8.0"
+    "readline-sync": "~1.2.14"
   },
   "peerDependencies": {
     "grunt": "~0.4.1"

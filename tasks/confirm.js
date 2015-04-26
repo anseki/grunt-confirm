@@ -25,11 +25,12 @@ module.exports = function(grunt) {
   }
 
   grunt.registerMultiTask('confirm',
-    'Abort or continue the tasks flow according to an answer to the question,' +
-      ' the tasks pause and wait it.', function() {
+    'Abort or continue the flow of tasks according to an answer (with or without' +
+      ' Enter key) to the specified question. the flow of tasks' +
+      ' pauses and waits for it.', function() {
 
-    var that = this, options = that.options(), filesArray, matches,
-      query, res, rlsMethod, rlsOptions = {history: false};
+    var that = this, options = that.options(), query, filesArray, matches,
+      res, rlsMethod, rlsOptions = {history: false};
 
     function getFiles() {
       if (!filesArray) {
@@ -50,16 +51,17 @@ module.exports = function(grunt) {
       }
       return filesArray;
     }
+
     function hl(text) {
-      text += '';
-      return RE_CTRL_CHAR.test(text) ? text : HL_IN + text + HL_OUT;
+      return !(text += '') || RE_CTRL_CHAR.test(text) ? text : HL_IN + text + HL_OUT;
     }
 
     if (typeof options.question === 'function') {
       query = callHandler(options.question, [getFiles()], 'question');
-      if (!query) { return; }
+      if (!query) { return; } // Do nothing.
     } else {
-      query = options.question ? hl(options.question + ' :') : options.question; // accept ''
+      query = options.question ?
+        options.question + ' :' : options.question; // accept ''
     }
 
     if ((matches = /^\s*_key(?:\:(.+))?\s*$/i.exec(options.input + ''))) {
@@ -72,12 +74,13 @@ module.exports = function(grunt) {
       if (options.input) { rlsOptions.trueValue = (options.input + '').split(','); }
     }
 
-    res = readlineSync[rlsMethod](query, rlsOptions);
+    res = readlineSync[rlsMethod](query && process.platform !== 'win32' ?
+      hl(query) : query, rlsOptions); // accept undefined
     if (!(rlsOptions.trueValue ? res === true :
-        typeof options.proceed === 'function' ? callHandler(options.proceed,
-          [res, getFiles()], 'proceed') :
+        typeof options.proceed === 'function' ?
+          callHandler(options.proceed, [res, getFiles()], 'proceed') :
         typeof options.proceed === 'boolean' ? options.proceed : true)) {
-      grunt.log.ok('Tasks are aborted.');
+      grunt.log.ok(hl('Tasks are aborted.'));
       grunt.task.clearQueue();
     }
   });
