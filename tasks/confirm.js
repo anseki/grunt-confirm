@@ -26,8 +26,7 @@ module.exports = function(grunt) {
 
   grunt.registerMultiTask('confirm',
     'Abort or continue the flow of tasks according to an answer (with or without' +
-      ' Enter key) to the specified question. the flow of tasks' +
-      ' pauses and waits for it.', function() {
+      ' Enter key) to the specified question.', function() {
 
     var that = this, options = that.options(), query, filesArray, matches,
       res, rlsMethod, rlsOptions = {history: false};
