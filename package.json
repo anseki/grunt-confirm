@@ -13,6 +13,10 @@
     "wait",
     "prompt"
   ],
+  "files": [
+    "tasks/*.js",
+    "LICENSE-MIT"
+  ],
   "engines": {
     "node": ">= 0.8.0"
   },
