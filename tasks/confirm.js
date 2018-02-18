@@ -2,7 +2,7 @@
  * grunt-confirm
  * https://github.com/anseki/grunt-confirm
  *
- * Copyright (c) 2017 anseki
+ * Copyright (c) 2018 anseki
  * Licensed under the MIT license.
  */
 
