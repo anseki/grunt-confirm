@@ -1,6 +1,6 @@
 # grunt-confirm
 
-[![npm](https://img.shields.io/npm/v/grunt-confirm.svg)](https://www.npmjs.com/package/grunt-confirm) [![GitHub issues](https://img.shields.io/github/issues/anseki/grunt-confirm.svg)](https://github.com/anseki/grunt-confirm/issues) [![David](https://img.shields.io/david/anseki/grunt-confirm.svg)](package.json) [![license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE-MIT)
+[![npm](https://img.shields.io/npm/v/grunt-confirm.svg)](https://www.npmjs.com/package/grunt-confirm) [![GitHub issues](https://img.shields.io/github/issues/anseki/grunt-confirm.svg)](https://github.com/anseki/grunt-confirm/issues) [![David](https://img.shields.io/david/anseki/grunt-confirm.svg)](package.json) [![license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 Abort or continue the flow of tasks according to an answer (with or without Enter key) to the specified question. The flow of tasks is paused, until the user responds and the next behavior is found by specified options.
 
